@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="mr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>BlueSky Resort — Inspired Hotel Layout</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Basic reset and styles -->
+  <style>
+    /* ==========================
+       Base / Reset
+       ========================== */
+    :root{
+      --primary:#0b5cff; /* blue accent */
+      --accent:#ffb703; /* warm accent */
+      --dark:#0f1724;
+      --muted:#6b7280;
+      --bg:#f6f8fb;
+      --card:#ffffff;
+      --radius:12px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--bg);color:var(--dark);-webkit-font-smoothing:antialiased}
+    a{text-decoration:none;color:inherit}
+
+    /* ==========================
+       Header / Nav
+       ========================== */
+    .site-header{
+      background:linear-gradient(90deg, rgba(11,92,255,0.95), rgba(6,50,120,0.95));
+      color:#fff;position:sticky;top:0;z-index:40;backdrop-filter: blur(6px);
+      box-shadow:0 6px 18px rgba(11,92,255,0.08);
+    }
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;gap:12px;align-items:center}
+    .brand .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#fff 10%, rgba(255,255,255,0.12));display:flex;align-items:center;justify-content:center;font-weight:700}
+    .brand h1{font-size:18px;margin:0}
+    .nav-links{display:flex;gap:18px;align-items:center}
+    .nav-links a{color:#e6eefc;font-weight:600}
+    .btn{display:inline-block;padding:10px 16px;border-radius:10px;background:var(--accent);color:var(--dark);font-weight:700}
+
+    /* Hamburger for mobile */
+    .hamburger{display:none;width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.08);align-items:center;justify-content:center}
+
+    /* ==========================
+       Hero / Banner
+       ========================== */
+    .hero{padding:56px 0 40px;color:#fff}
+    .hero-grid{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center}
+    .hero-left h2{font-size:40px;line-height:1.05;margin:0 0 14px}
+    .hero-left p{color:rgba(255,255,255,0.9);margin:0 0 20px}
+    .search-card{background:rgba(255,255,255,0.06);padding:18px;border-radius:14px;backdrop-filter: blur(6px)}
+    .search-row{display:flex;gap:8px}
+    .search-row input, .search-row select{flex:1;padding:12px;border-radius:10px;border:none;background:rgba(255,255,255,0.06);color:#fff}
+    .search-row button{padding:12px 16px;border-radius:10px;border:none;background:var(--accent);font-weight:700}
+
+    /* Decorative hero image block */
+    .hero-right{background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));padding:18px;border-radius:14px}
+    .hero-photo{height:260px;border-radius:10px;background:linear-gradient(135deg,#0b5cff,#3aa1ff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+
+    /* ==========================
+       Rooms Section
+       ========================== */
+    .section{padding:48px 0}
+    .section h3{font-size:22px;margin:0 0 8px}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .card{background:var(--card);border-radius:12px;padding:12px;box-shadow:0 6px 18px rgba(15,23,36,0.06);overflow:hidden}
+    .card .thumb{height:160px;border-radius:10px;background:linear-gradient(135deg,#ffd9a8,#ffb703)}
+    .card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+    .price{font-weight:800;color:var(--primary)}
+    .card .tags{display:flex;gap:8px}
+    .tag{background:rgba(11,92,255,0.06);padding:6px 8px;border-radius:8px;font-size:12px;color:var(--primary)}
+
+    /* ==========================
+       Features / About
+       ========================== */
+    .features{display:flex;gap:16px}
+    .feature{flex:1;background:linear-gradient(180deg, #fff, #fff);padding:18px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,36,0.04)}
+
+    /* ==========================
+       Gallery
+       ========================== */
+    .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .gallery .g{height:120px;border-radius:10px;background:#ddd}
+
+    /* ==========================
+       Footer
+       ========================== */
+    .site-footer{padding:36px 0;background:#0f1724;color:#cbd5e1}
+    .footer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+
+    /* ==========================
+       Responsive
+       ========================== */
+    @media (max-width:1000px){
+      .hero-grid{grid-template-columns:1fr}
+      .cards{grid-template-columns:repeat(2,1fr)}
+      .gallery{grid-template-columns:repeat(3,1fr)}
+    }
+    @media (max-width:700px){
+      .nav-links{display:none}
+      .hamburger{display:flex}
+      .cards{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      .footer-grid{grid-template-columns:1fr}
+    }
+
+    /* small utilities */
+    .muted{color:var(--muted)}
+    .center{text-align:center}
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">BS</div>
+        <div>
+          <h1>BlueSky Resort</h1>
+          <div class="muted" style="font-size:12px">Luxury stays • Beachfront • Free Wi‑Fi</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#rooms">Rooms</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a class="btn" href="#booking">Book Now</a>
+      </nav>
+
+      <div class="hamburger" onclick="toggleMobileNav(event)">
+        <svg width="20" height="12" viewBox="0 0 20 12" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="20" height="2" rx="1" fill="white"/><rect y="5" width="20" height="2" rx="1" fill="white"/><rect y="10" width="20" height="2" rx="1" fill="white"/></svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="container hero-grid">
+      <div class="hero-left">
+        <h2>Experience seaside comfort and modern luxury</h2>
+        <p>Book your stay with special seasonal offers. Free cancellation up to 24 hours before arrival.</p>
+
+        <div class="search-card">
+          <form class="search-row" onsubmit="event.preventDefault();alert('Search submitted — replace with booking logic')">
+            <input type="text" placeholder="City or hotel name">
+            <input type="date">
+            <button type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-photo">Beautiful sea view photo</div>
+        <div style="margin-top:12px;color:rgba(255,255,255,0.9)">Deluxe rooms start at <strong>₹4,499</strong>/night</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ROOMS -->
+  <section id="rooms" class="section">
+    <div class="container">
+      <h3>Our Rooms</h3>
+      <p class="muted">Choose from a selection of rooms designed for comfort and convenience.</p>
+
+      <div class="cards" style="margin-top:18px">
+        <!-- Card 1 -->
+        <div class="card">
+          <div class="thumb"></div>
+          <div style="margin-top:12px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div><strong>Deluxe Sea View</strong><div class="muted" style="font-size:13px">2 guests • 1 bed</div></div>
+              <div class="price">₹4,499</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+              <div class="tags"><span class="tag">Breakfast</span><span class="tag">Wi‑Fi</span></div>
+              <button class="btn" style="padding:8px 12px;border-radius:8px">Book</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card">
+          <div class="thumb" style="background:linear-gradient(135deg,#a8d9ff,#0b5cff)"></div>
+          <div style="margin-top:12px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div><strong>Family Suite</strong><div class="muted" style="font-size:13px">4 guests • 2 beds</div></div>
+              <div class="price">₹7,299</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+              <div class="tags"><span class="tag">Kitchen</span><span class="tag">Sea view</span></div>
+              <button class="btn" style="padding:8px 12px;border-radius:8px">Book</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card">
+          <div class="thumb" style="background:linear-gradient(135deg,#ffd9a8,#ffb703)"></div>
+          <div style="margin-top:12px">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div><strong>Premium Suite</strong><div class="muted" style="font-size:13px">3 guests • 2 beds</div></div>
+              <div class="price">₹9,999</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+              <div class="tags"><span class="tag">Private Pool</span><span class="tag">Breakfast</span></div>
+              <button class="btn" style="padding:8px 12px;border-radius:8px">Book</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section" id="about">
+    <div class="container">
+      <h3>Why choose BlueSky?</h3>
+      <p class="muted">Modern amenities, attentive service, and a peaceful location.</p>
+
+      <div class="features" style="margin-top:18px">
+        <div class="feature">
+          <h4>Beachfront location</h4>
+          <p class="muted">Step out and feel the sea breeze. Private beach access for guests.</p>
+        </div>
+        <div class="feature">
+          <h4>Spa & Wellness</h4>
+          <p class="muted">Relax at our full-service spa and wellness center.</p>
+        </div>
+        <div class="feature">
+          <h4>Great Food</h4>
+          <p class="muted">On-site restaurants with international and local cuisine.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="section">
+    <div class="container">
+      <h3>Gallery</h3>
+      <div class="gallery" style="margin-top:12px">
+        <div class="g"></div>
+        <div class="g"></div>
+        <div class="g"></div>
+        <div class="g"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / BOOKING -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h3>Contact & Booking</h3>
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:20px;margin-top:12px">
+        <div>
+          <p class="muted">Write to us or use the booking form to request availability.</p>
+          <form onsubmit="event.preventDefault();alert('Booking request sent (demo)')" style="display:grid;gap:10px">
+            <input type="text" placeholder="Your name" style="padding:12px;border-radius:8px;border:1px solid #e6eefc">
+            <input type="email" placeholder="Email" style="padding:12px;border-radius:8px;border:1px solid #e6eefc">
+            <div style="display:flex;gap:8px">
+              <input type="date" style="flex:1;padding:12px;border-radius:8px;border:1px solid #e6eefc">
+              <input type="number" min="1" placeholder="Guests" style="width:100px;padding:12px;border-radius:8px;border:1px solid #e6eefc">
+            </div>
+            <textarea placeholder="Message" rows="4" style="padding:12px;border-radius:8px;border:1px solid #e6eefc"></textarea>
+            <button class="btn" style="width:160px">Send Booking</button>
+          </form>
+        </div>
+
+        <aside style="background:var(--card);padding:16px;border-radius:12px;box-shadow:0 6px 18px rgba(15,23,36,0.04)">
+          <h4>Contact Info</h4>
+          <p class="muted">BlueSky Resort, Ocean Road, City</p>
+          <p class="muted">Phone: +91 99999 99999</p>
+          <p class="muted">Email: contact@bluesky.example</p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <h4 style="color:#fff;margin:0">BlueSky Resort</h4>
+        <p class="muted">© 2025 BlueSky Resort. All rights reserved.</p>
+      </div>
+      <div>
+        <h4 style="color:#fff;margin:0">Links</h4>
+        <div class="muted" style="margin-top:8px">Home • Rooms • About • Contact</div>
+      </div>
+      <div>
+        <h4 style="color:#fff;margin:0">Follow</h4>
+        <div class="muted" style="margin-top:8px">Instagram • Facebook • Twitter</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Minimal JS for mobile nav -->
+  <script>
+    function toggleMobileNav(e){
+      const links = document.querySelector('.nav-links');
+      if(!links) return;
+      if(window.getComputedStyle(links).display === 'none'){
+        links.style.display = 'flex';
+        links.style.flexDirection = 'column';
+        links.style.position = 'absolute';
+        links.style.right = '20px';
+        links.style.top = '70px';
+        links.style.background = 'linear-gradient(180deg, rgba(11,92,255,0.98), rgba(6,50,120,0.98))';
+        links.style.padding = '12px';
+        links.style.borderRadius = '10px';
+      } else {
+        links.style.display = '';
+        links.style.position = '';
+        links.style.background = '';
+      }
+    }
+  </script>
+</body>
+</html>
